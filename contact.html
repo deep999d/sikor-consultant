@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="page-contact">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Vertex Technology Partners</title>
+  <meta name="description" content="Get in touch. Tell us about your project—we'll respond within one business day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"><div class="page-bg-gradient"></div><div class="page-bg-pattern"></div></div>
+  <div class="noise-overlay" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)" opacity="0.035"/></svg></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-bg-aurora"></div><div class="hero-bg-orbs"><div class="hero-orb hero-orb-1"></div><div class="hero-orb hero-orb-2"></div><div class="hero-orb hero-orb-3"></div></div><div class="hero-bg-grid"></div><div class="hero-bg-glow"></div><div class="hero-bg-mesh"></div></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">Vertex</a>
+      <nav class="nav" aria-label="Main">
+        <ul>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="approach.html">Approach</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="clients.html">Clients</a></li>
+          <li><a href="contact.html" class="nav-cta">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span class="breadcrumb-sep">/</span> <span>Contact</span></nav>
+        <h1 class="page-hero-title" data-animate>Get in touch</h1>
+        <p class="page-hero-lead" data-animate data-animate-delay="1">Tell us about your project, timeline, and constraints. We'll respond within one business day.</p>
+      </div>
+    </section>
+
+    <section class="section contact contact-page">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-intro">
+            <p class="contact-email">Prefer email? <a href="mailto:hello@vertex-partners.com">hello@vertex-partners.com</a></p>
+            <p class="contact-note">We work with companies and teams of all sizes. Share a brief description of your challenge or goals and we'll come back with next steps.</p>
+          </div>
+          <form class="contact-form" action="#" method="post">
+            <div class="form-row">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@company.com">
+            </div>
+            <div class="form-row">
+              <label for="company">Company (optional)</label>
+              <input type="text" id="company" name="company" placeholder="Company name">
+            </div>
+            <div class="form-row">
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Brief description of your project or challenge…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><span>Send message</span><svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><a href="index.html" class="logo">Vertex</a><p class="footer-tagline">IT & AI consulting for companies and teams that need results.</p></div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="services.html">Services</a><a href="approach.html">Approach</a><a href="work.html">Work</a><a href="about.html">About</a><a href="clients.html">Clients</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer-bottom"><p class="footer-copy">&copy; 2025 Vertex Technology Partners. All rights reserved.</p></div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
