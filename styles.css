@@ -828,11 +828,37 @@ body.loaded .hero-meta { transition-delay: 0.95s; }
 .case-study .work-outcomes { margin-top: var(--space-md); }
 
 /* --- Team (about page) --- */
+.team-group {
+  margin-bottom: var(--space-4xl);
+}
+.team-group:last-child {
+  margin-bottom: 0;
+}
+.team-group-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0 0 var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: inline-block;
+}
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--space-xl);
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
+}
+.team-group .team-grid { margin-top: var(--space-lg); }
+.team-card--leader .team-card-role {
+  color: var(--color-gold);
+  font-weight: 500;
+}
+.team-card--leader {
+  border-color: rgba(201, 169, 98, 0.15);
+  box-shadow: 0 0 0 1px rgba(201, 169, 98, 0.08);
 }
 .team-card {
   padding: var(--space-xl);
