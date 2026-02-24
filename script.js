@@ -14,6 +14,40 @@
   }
   setTimeout(onLoad, 1800);
 
+  // Live background: pulse layer (in page-bg), shimmer + particles (in hero-bg)
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pageBg = document.querySelector('.page-bg');
+  if (pageBg && !prefersReducedMotion) {
+    var pulse = document.createElement('div');
+    pulse.className = 'page-bg-pulse';
+    pulse.setAttribute('aria-hidden', 'true');
+    pageBg.appendChild(pulse);
+  }
+  var heroBg = document.querySelector('.hero-bg');
+  if (heroBg && !prefersReducedMotion) {
+    var shimmer = document.createElement('div');
+    shimmer.className = 'hero-bg-shimmer';
+    shimmer.setAttribute('aria-hidden', 'true');
+    heroBg.appendChild(shimmer);
+
+    var particlesEl = document.createElement('div');
+    particlesEl.className = 'hero-bg-particles';
+    particlesEl.setAttribute('aria-hidden', 'true');
+    heroBg.appendChild(particlesEl);
+
+    var particleCount = 28;
+    var durations = [15, 18, 20, 22, 25, 28];
+    for (var i = 0; i < particleCount; i++) {
+      var p = document.createElement('div');
+      p.className = 'hero-bg-particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDuration = (durations[i % durations.length]) + 's';
+      p.style.animationDelay = (-Math.random() * 12) + 's';
+      particlesEl.appendChild(p);
+    }
+  }
+
   // Scroll progress bar
   var progressBar = document.createElement('div');
   progressBar.className = 'scroll-progress';
@@ -126,5 +160,62 @@
         }, 2000);
       }, 800);
     });
+  }
+
+  // Custom cursor (only for pointer devices, not touch)
+  var hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+  if (hasFinePointer) {
+    var cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot cursor-hidden';
+    cursorDot.setAttribute('aria-hidden', 'true');
+    var cursorRing = document.createElement('div');
+    cursorRing.className = 'cursor-ring cursor-hidden';
+    cursorRing.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cursorDot);
+    document.body.appendChild(cursorRing);
+
+    var mouseX = 0, mouseY = 0;
+    var dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+    var cursorVisible = false;
+    var lerp = function (a, b, t) { return a + (b - a) * t; };
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!cursorVisible) {
+        cursorVisible = true;
+        document.body.classList.add('has-custom-cursor');
+        cursorDot.classList.remove('cursor-hidden');
+        cursorRing.classList.remove('cursor-hidden');
+      }
+    });
+
+    document.addEventListener('mouseleave', function () {
+      cursorVisible = false;
+      document.body.classList.remove('has-custom-cursor', 'cursor-hover');
+      cursorDot.classList.add('cursor-hidden');
+      cursorRing.classList.add('cursor-hidden');
+    });
+
+    var hoverTargets = 'a, button, [role="button"], input, textarea, select, .btn';
+    document.body.addEventListener('mouseover', function (e) {
+      if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hover');
+    });
+    document.body.addEventListener('mouseout', function (e) {
+      if (!e.relatedTarget || !e.relatedTarget.closest(hoverTargets)) document.body.classList.remove('cursor-hover');
+    });
+
+    function tickCursor() {
+      dotX = lerp(dotX, mouseX, 0.45);
+      dotY = lerp(dotY, mouseY, 0.45);
+      ringX = lerp(ringX, mouseX, 0.18);
+      ringY = lerp(ringY, mouseY, 0.18);
+      cursorDot.style.left = dotX + 'px';
+      cursorDot.style.top = dotY + 'px';
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(tickCursor);
+    }
+    tickCursor();
   }
 })();
