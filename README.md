@@ -1,6 +1,6 @@
-# Vertex Technology Partners — Company site
+# Sikor Consultant — Company site
 
-Multi-page static site for an IT & AI consulting company. No build step.
+Multi-page static site for AI product development and IT consulting. Business partner to developers and teams. No build step.
 
 ## Run locally
 
@@ -35,6 +35,6 @@ Then open `http://localhost:8080`. (Opening `index.html` directly may break rela
 
 ## Customize
 
-- Replace "Vertex" and team names with your company and people.
+- Replace "Sikor Consultant" and team names with your company and people.
 - Point the contact form to your backend or Formspree/Netlify Forms.
 - Add real team photos by replacing `.team-card-avatar span` with an `<img>` and styling.
