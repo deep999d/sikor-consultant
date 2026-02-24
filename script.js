@@ -12,7 +12,38 @@
   } else {
     window.addEventListener('load', onLoad);
   }
-  setTimeout(onLoad, 1500); // fallback so content always appears
+  setTimeout(onLoad, 1800);
+
+  // Scroll progress bar
+  var progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  progressBar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(progressBar);
+
+  var header = document.querySelector('.site-header');
+  var lastScrollY = 0;
+  var ticking = false;
+
+  function updateScroll() {
+    var y = window.scrollY || window.pageYOffset;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? Math.min((y / docHeight) * 100, 100) : 0;
+    progressBar.style.width = pct + '%';
+    if (header) {
+      if (y > 24) header.classList.add('is-scrolled');
+      else header.classList.remove('is-scrolled');
+    }
+    lastScrollY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateScroll);
+    }
+  }, { passive: true });
+  updateScroll();
 
   var menuToggle = document.querySelector('.menu-toggle');
   var nav = document.querySelector('.nav');
@@ -39,7 +70,7 @@
     }
   });
 
-  // Scroll-triggered animations
+  // Scroll-triggered animations (slightly earlier trigger for smoother feel)
   if (animated.length && 'IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -47,7 +78,7 @@
           entry.target.classList.add('is-visible');
         }
       });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
+    }, { rootMargin: '0px 0px -4% 0px', threshold: 0 });
     animated.forEach(function (el) { observer.observe(el); });
   } else {
     animated.forEach(function (el) { el.classList.add('is-visible'); });
